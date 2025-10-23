@@ -1,35 +1,21 @@
 <?php
 
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\DanhMucController;
-use App\Http\Controllers\API\BaoCaoController;
+use App\Http\Controllers\API\AuthController;
+
+
 
 
 Route::get('/', function () {
-    return view('header');
+    return view('report');
 });
-Route::view('/bao-cao', 'report'); 
-Route::withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]) // Loại bỏ CSRF
-    ->prefix('api') // Vẫn đặt tiền tố /api/
-    ->group(function () {
-        
-        // --- Định tuyến cho Danh mục (Selectors) ---
-        Route::prefix('danh-muc')->group(function () {
-            // GET /api/danh-muc/don-vi
-            Route::get('don-vi', [DanhMucController::class, 'getDonViHanhChinh']); 
-            
-            // GET /api/danh-muc/buu-cuc
-            Route::get('buu-cuc', [DanhMucController::class, 'getBuuCuc']); 
-            
-            // GET /api/danh-muc/dich-vu
-            Route::get('dich-vu', [DanhMucController::class, 'getDichVu']); 
-        });
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 
-        // --- Định tuyến cho Báo cáo Giao dịch ---
-        // POST /api/bao-cao (Không cần token CSRF)
-        Route::post('bao-cao', [BaoCaoController::class, 'store']); 
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-        // GET /api/bao-cao
-        Route::get('bao-cao', [BaoCaoController::class, 'index']); 
-        
-    });
+
+Route::get('/register', function () {
+    return view('auth.register'); 
+})->name('register');
