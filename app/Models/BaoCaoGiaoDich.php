@@ -25,7 +25,7 @@ class BaoCaoGiaoDich extends Model
 
     // Khai báo Casts: Tự động chuyển đổi trường 'DuLieuChiTiet' thành mảng/đối tượng PHP khi truy xuất.
     protected $casts = [
-        'DuLieuChiTiet' => 'json',
+        'DuLieuChiTiet' => 'array',
         'NgayBaoCao' => 'date', // Để đảm bảo nó được xử lý như ngày tháng
     ];
 

@@ -19,9 +19,7 @@ return new class extends Migration
             $table->decimal('TongSoTien', 18, 2)->default(0);
             $table->integer('SoLuong')->default(0);
 
-            // Trường lưu dữ liệu chi tiết, sử dụng 'json' để lưu 5-6 trường nhập liệu riêng
-            // Nếu bạn dùng MySQL cũ hơn không hỗ trợ JSON, hãy đổi thành 'text'
-            $table->json('DuLieuChiTiet')->nullable(); 
+            $table->json('DuLieuChiTiet')->nullable();
 
             $table->string('GhiChu', 255)->nullable();
             $table->timestamps();
