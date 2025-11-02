@@ -21,7 +21,7 @@ class DichVu extends Model
 
     // CẤU HÌNH QUAN TRỌNG
     protected $casts = [
-        'CauHinhTruong' => 'json',
+        'CauHinhTruong' => 'array', // Chuyển đổi tự động sang mảng/đối tượng PHP
     ];
 
     /**

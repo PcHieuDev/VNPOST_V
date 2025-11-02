@@ -18,6 +18,7 @@ Route::prefix('danh-muc')->group(function () {
 // --- Báo cáo giao dịch ---
 Route::post('bao-cao', [BaoCaoController::class, 'store']);
 Route::get('bao-cao', [BaoCaoController::class, 'index']);
+Route::get('/statistics', [BaoCaoController::class, 'getChartData']);
 
 
 Route::post('/logout', function() {
@@ -25,6 +26,7 @@ Route::post('/logout', function() {
     return response()->json(['message' => 'Logged out successfully']);
 });
 
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 
 // --- Đơn vị Hành chính ---
